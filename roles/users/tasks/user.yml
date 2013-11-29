@@ -1,0 +1,4 @@
+- name: "{{user}}: Create user"
+  user: name={{user}} groups=sudo shell=/bin/bash
+- name: "{{user}}: Setup key"
+  authorized_key: user={{user}} key={{key}}
