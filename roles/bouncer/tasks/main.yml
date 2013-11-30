@@ -1,5 +1,5 @@
 - name: Install ZNC
-  apt: package=znc state=latest
+  apt: package=znc state=present
 - name: setup ZNC user
   user: name=znc system=true
 - name: check if ZNC server is running
