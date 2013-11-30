@@ -1,0 +1,2 @@
+- name: Grant sudo group passwordless sudo
+  copy: dest=/etc/sudoers.d/sudo src=../files/sudo
