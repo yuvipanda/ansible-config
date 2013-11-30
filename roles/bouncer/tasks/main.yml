@@ -1,0 +1,14 @@
+- name: Install ZNC
+  apt: package=znc state=latest
+- name: setup ZNC user
+  user: name=znc system=true
+- name: check if ZNC server is running
+  sudo: yes
+  sudo_user: znc
+  shell: "ps ux | grep '/usr/bin/znc' | grep -v grep | wc -l"
+  register: is_znc_running
+- name: start ZNC server
+  sudo: yes
+  sudo_user: znc
+  command: /usr/bin/znc removes=/home/znc/.znc/configs/znc.conf
+  when: is_znc_running.stdout|int < 1 # Fragile! But znc doesn't use a pid file :(
