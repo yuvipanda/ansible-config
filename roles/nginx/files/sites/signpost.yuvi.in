@@ -1,0 +1,9 @@
+server {
+    listen 80;
+
+    server_name signpost.yuvi.in;
+
+     location / {
+         rewrite /(.*) $scheme://tools.wmflabs.org/wp-signpost/$1 break;
+     }
+}
