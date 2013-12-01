@@ -1,0 +1,12 @@
+- name: Install nginx
+  apt: package=nginx-extras
+- name: Put in place configs
+  copy: src=../files/sites/{{ item }} dest=/etc/nginx/sites-available/{{ item }}
+  with_items: sites
+  notify:
+    - restart nginx
+- name: Enable the configs
+  file: src=/etc/nginx/sites-available/{{ item  }} path=/etc/nginx/sites-enabled/{{ item }} state=link
+  with_items: sites
+  notify:
+    - restart nginx

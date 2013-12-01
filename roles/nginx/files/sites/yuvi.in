@@ -1,0 +1,22 @@
+underscores_in_headers on;
+
+server {
+    listen 80;
+
+    server_name yuvi.in;
+
+    gzip on;
+    gzip_proxied any;
+
+    location /blog {
+        proxy_pass              http://yuvipanda.webfactional.com/blog;
+        proxy_set_header        X-Real-IP               $remote_addr;
+        proxy_set_header        Host                    yuvi.in;
+     }
+
+     location /signpost {
+         rewrite /signpost/(.*) $scheme://tools.wmflabs.org/wp-signpost/$1 break;
+     }
+}
+    
+
