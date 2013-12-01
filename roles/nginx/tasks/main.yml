@@ -10,3 +10,5 @@
   with_items: sites
   notify:
     - restart nginx
+- name: Create docroot
+  file: path=/var/www owner=root group=www-data state=directory mode=555
