@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  accelerate: yes
   roles:
     - common
     - users
